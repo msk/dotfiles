@@ -2,7 +2,7 @@
 # User configuration sourced by interactive shells
 #
 
-export EDITOR=emacs
+export EDITOR="emacs -nw"
 
 # Define zim location
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
