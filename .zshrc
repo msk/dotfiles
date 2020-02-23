@@ -18,3 +18,7 @@ if command -v exa > /dev/null 2>&1; then
     alias ll="exa -l"
     alias lt="exa -ls=modified"
 fi
+
+if [ -f ${HOME}/.cargo/bin/procrustes ]; then
+    procrustes
+fi
