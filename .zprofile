@@ -1,3 +1,5 @@
+test -d /opt/homebrew/bin && PATH=${PATH}:/opt/homebrew/bin
+
 test -d /opt/pkg && LOCALBASE="/opt/pkg" || \
   LOCALBASE="/usr/pkg"
 export LOCALBASE
