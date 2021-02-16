@@ -1,0 +1,7 @@
+[user]
+	name = Min Kim
+	email = msk@dolbo.net
+[fetch]
+	prune = true
+[github]
+	user = msk
