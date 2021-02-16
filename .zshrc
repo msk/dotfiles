@@ -52,6 +52,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -75,11 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,9 +110,17 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-autoload _ssh_hosts
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-alias gad='GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(date)"'
+    autoload -Uz compinit
+    compinit
+fi
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+alias gad='GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(
+date)"'
 if command -v exa > /dev/null 2>&1; then
     alias l="exa -al"
     alias lc="exa -ls=changed"
